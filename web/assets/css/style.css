@@ -1,0 +1,528 @@
+/*页面全局设置*/
+body,html{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  background: #F5F5F5;
+}
+.container{
+  width: 100% !important;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.mainboard{
+  width: 100% !important;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.row{
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-right: -15px;
+  margin-left: -15px;
+  padding-top: 5px;
+}
+* > a{
+  text-decoration:none;
+  -webkit-user-select:none;
+}
+a{cursor: pointer;color: #333;-webkit-transition: all 0.2s ease;transition: all 0.2s ease;}
+a:hover{text-decoration: none;color: #00bff3;outline: 0;}
+a:focus{outline: none !important;color: #101010;}
+a:link{
+  text-decoration:none;
+}
+a:visited{
+  text-decoration:none;
+}
+ul{
+margin: 0;
+padding: 0;
+list-style: none;
+}
+/**
+*2015-11-16
+*##reuser
+*这部分代码是可复用的，要放入style.css
+*白色的背景模板
+*/
+.blackboard{
+  background: #ffffff;
+  border: 1px #DEDFE1 solid;
+}
+/*页面全局设置*/
+.btn-background-yellow{
+  background: #FCCC20;
+}
+.btn-txt-yellow{
+  color: #FCCC20;
+}
+/*模板全局设置 背景色·和悬浮效果*/
+.nav_body{
+  z-index: 100000000;
+  position:fixed;
+  width:100%;
+  background:#0099CB;
+  border-radius:0px;
+  border:0px;
+}
+/*模板全局设置 背景色·和悬浮效果*/
+
+/*模板全局设置 默认边框颜色*/
+.navbar-default{
+  border-color: #F5F5F5;
+}
+/*模板全局设置 默认边框颜色*/
+
+/*左侧模板设置 超链接颜色和字体设置*/
+.navbar-default .navbar-nav>.active>a{
+  background-color:#F5F5F5;
+  color: #000000;
+  font-size: large;
+}
+/*左侧模板设置 超链接颜色和字体设置*/
+
+/*左侧模板设置 logo字体设置*/
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-brand:hover{
+  color: #ffffff;
+  font-weight: bold;
+  font-size: x-large;
+}
+/*左侧模板设置 logo字体设置*/
+
+/*左侧模板设置 鼠标悬浮在导航选项上方时字体设置 (这部分不设置会默认走bootstrap配置)*/
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover{
+  background-color:#F5F5F5;
+  color: #000000;
+  font-size: large;
+}
+/*左侧模板设置 鼠标悬浮在导航选项上方时 (这部分不设置会默认走bootstrap配置)*/
+
+/*左侧模板设置 默认超链接字体*/
+.navbar-default .navbar-nav>li>a{
+  color: #ffffff;
+}
+/*左侧模板设置 默认超链接字体*/
+
+/*左侧模板设置 选项背景色设置 (这部分不设置会默认走bootstrap配置)*/
+.navbar-default .navbar-nav>.active>li{
+  background-color:#F5F5F5;
+}
+/*左侧模板设置 选项背景色设置 (这部分不设置会默认走bootstrap配置)*/
+
+/*右侧模板设置 设置搜索icon的位置和样式*/
+.search-icon{
+  position:absolute;
+  right:9%;
+  top:16px;
+  font-size:18px;
+  color:#999;
+}
+/*右侧模板设置 设置搜索icon的位置和样式*/
+
+/*右侧模板设置 右侧导航宽度所占比例*/
+.search-nav{
+  width: 30%;
+}
+/*右侧模板设置 右侧导航宽度所占比例*/
+
+/*右侧模板设置 搜索选项位置设置*/
+#search-li{
+  position: absolute;
+  margin-right: 10%;
+  margin-left:0px;
+}
+/*右侧模板设置 搜索选项位置设置*/
+
+/*右侧模板设置 导航表单总宽度*/
+.navbar-form .form-control{
+  width: 200px;
+}
+/*右侧模板设置 导航表单总宽度*/
+
+/*右侧模板设置 用户头像选项位置大小设置*/
+#userimg-li{
+  position: relative;
+  width: 40px;
+  margin-left: 230px;
+  margin-top: 0px;
+}
+/*右侧模板设置 用户头像选项位置大小设置*/
+
+/*右侧模板设置 用户头像详细大小位置和样式*/
+/**
+*##reuser
+*这部分代码是可复用的，要放入style.css
+*圆形的用户头像
+*/
+.user-img-circle{
+  border-radius: 40px;
+  width: 40px;
+  height: 40px;
+}
+/*201-01-19添加*/
+/*正方形头像*/
+.user-img-rectangle{
+  border-radius: 8px;
+  width: 55px;
+  height: 55px;
+}
+#nav-user-img{
+  position: absolute;
+  top: 4px;
+  margin-left: 20px;
+  right: 0%;
+}
+/*右侧模板设置 用户头像详细大小位置和样式*/
+
+/*右侧模板设置 用户头像外围超链接位置(为了让a和img尽量重叠)*/
+#img-link{
+  position: absolute;
+  margin-top: 0px;
+  margin-left: 15px;
+  border-radius: 40px;
+  right: 10%;
+  width: 40px;
+  height: 40px;
+}
+/*右侧模板设置 用户头像外围超链接位置(为了让a和img尽量重叠)*/
+
+/**右侧模板设置 搜索框的下拉框的宽度以及边框样式*/
+#dropdown-mod{
+  display: none;
+  position: absolute;
+  margin-top: 3px;
+  width:140%;
+  border: 1px solid #CCC;
+  border-radius: 6px;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
+}
+/**右侧模板设置 搜索框的下拉框的宽度以及边框样式*/
+
+/*右侧模板设置 下拉框模板体边框和样式*/
+.mod-body{
+  border-radius: 4px;
+  background: #FFFFFF;
+  width:100%;
+  border-color: #000000;
+  height: auto;
+}
+/*右侧模板设置 下拉框模板体边框和样式*/
+
+/*右侧模板设置 下拉框模板头信息样式（p标签对应头信息）*/
+#dropdown-mod p{
+  height: 38px;
+  line-height: 38px;
+  margin: 0px;
+  padding: 0px 10px;
+  font-weight: normal;
+  border-bottom: 1px solid #F0F0F0
+}
+/*右侧模板设置 下拉框模板头信息样式*/
+
+/*右侧模板设置 下拉框结果整体显示部分，设置大小和背景色和滑动条*/
+.dropdown-list{
+  overflow-y: scroll;
+  list-style: outside none none;
+  line-height: 42px;
+  max-height: 250px;
+  border-bottom: 1px solid #F0F0F0
+}
+/*右侧模板设置 下拉框结果整体显示部分，设置大小和背景色和滑动条*/
+
+/*右侧模板设置 下拉框结果部分显示的样式*/
+#dropdown-mod .dropdown-list li{
+  position: relative;
+  height: 42px;
+  width: 100%;
+  line-height: 43px;
+  padding: 0px 10px !important;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  border-radius: 6px;
+}
+/*右侧模板设置 下拉框结果部分显示的样式，设置悬停效果*/
+
+/*右侧模板设置 详细的结果样式，背景色和悬停效果*/
+.result{
+  height: 40px;
+  text-align: left;
+  cursor: pointer;
+  margin-right: 20px;
+
+}
+li.result:hover{
+  background: #F0F0F0;
+}
+/*右侧模板设置 详细的结果样式，背景色和悬停效果*/
+
+/*右侧模板设置 下拉框页脚*/
+.mod-foot{
+  border-radius: 4px;
+  background: #F0F0F0;
+  width:100%;
+  border: 1px solid #cccccc;
+  height: auto;
+  border-radius: 2px;
+}
+/*右侧模板设置 下拉框页脚*/
+
+/**右侧模板设置 签到按钮*/
+#sign-in-li{
+  position: absolute;
+  margin-left: 275px;
+  margin-top: 8px;
+}
+/**右侧模板设置 签到按钮*/
+
+/**右侧模板设置 签到按钮文本样式*/
+.btn-txt{
+  margin-right: 0px;
+  margin-left: 8px;
+  color: #ffffff;
+}
+/**右侧模板设置 签到按钮文本样式*/
+
+/**右侧模板设置 签到按钮上icon颜色*/
+.btn-icon{
+  color: #ffffff;
+}
+
+/**右侧模板设置 签到按钮上icon颜色*/
+
+/**通用的按钮颜色*/
+.sign-in-btn{
+  outline:none;
+  width: 80px;
+}
+.sign-in-btn:hover{
+  background:#E19D32;
+}
+/**右侧模板设置 签到按钮颜色*/
+
+
+/*2016-01-19添加*/
+/*间距样式*/
+.left-10{
+  margin-left: 10px;
+}
+.left-20{
+  margin-left: 20px;
+}
+.left-30{
+  margin-left: 30px;
+}
+.left-40{
+  margin-left: 40px;
+}
+.right-10{
+  margin-right: 10px;
+}
+.right-20{
+  margin-right: 20px;
+}
+.right-30{
+  margin-right: 30px;
+}
+.right-40{
+  margin-right: 40px;
+}
+.top-10{
+  margin-top: 10px;
+}
+.top-20{
+  margin-top: 20px;
+}
+.top-30{
+  margin-top: 30px;
+}
+.top-40{
+  margin-top: 40px;
+}
+.bottom-10{
+  margin-bottom: 10px;
+}
+.bottom-20{
+  margin-bottom: 20px;
+}
+.bottom-30{
+  margin-bottom: 30px;
+}
+.bottom-40{
+  margin-bottom: 40px;
+}
+/*背景颜色样式*/
+.bar-gray{
+  background-color: #F4F4F4;
+}
+.bg-gray{
+  background-color: #F5F5F5;
+}
+.btn-yellow{
+  background-color: #FCCC20;
+}
+.alert-yellow{
+  background-color: #FCCC20;
+}
+.bg-yellow{
+  background-color: #FCCC20;
+}
+.nav-blue{
+  background-color: #0099CB;
+}
+/*字体颜色*/
+.label-gray{
+  color: #999999;
+}
+
+/*空间样式*/
+
+/*字体大小*/
+.small-10{
+  font-size: 10px;
+}
+.small-12{
+  font-size: 12px;
+}
+.middle-14{
+  font-size: 14px;
+}
+.middle-16{
+  font-size: 16px;
+}
+.big-18{
+  font-size: 18px;
+}
+.big-20{
+  font-size: 20px;
+}
+.blod-small{
+  font-weight: 400;
+}
+.blod-middle{
+  font-weight:800;
+}
+.blod-big{
+  font-weight: bold;
+}
+/*显示与隐藏*/
+.hidden-block{
+  display: none;
+}
+.show-block{
+  display: block;
+}
+.space-1{
+  width: 8.33333333%;
+  float: left;
+}
+.space-2{
+  width: 16.66666667%;
+  float: left;
+}
+.space-3{
+  width: 25%;
+  float: left;
+}
+.space-4{
+  width: 33.33333333%;
+  float: left;
+}
+.space-5{
+  width: 41.66666667%;
+  float: left;
+}
+.space-6{
+  width: 50%;
+  float: left;
+}
+.space-7{
+  width: 58.33333333%;
+  float: left;
+}
+.space-8{
+  width: 66.66666667%;
+  float: left;
+}
+.space-9{
+  width: 75%;
+  float: left;
+}
+.space-10{
+  width: 83.33333333%
+  float: left;
+}
+.space-11{
+  width: 91.66666667%;
+  float: left;
+}
+.space-12{
+  width: 100%;
+  float: left;
+}
+.length-1{
+  width: 8.33333333%;
+}
+.length-2{
+  width: 16.66666667%;
+}
+.length-3{
+  width: 25%;
+}
+.length-4{
+  width: 33.33333333%;
+}
+.length-5{
+  width: 41.66666667%;
+}
+.length-6{
+  width: 50%;
+}
+.length-7{
+  width: 58.33333333%;
+}
+.length-8{
+  width: 66.66666667%;
+}
+.length-9{
+  width: 75%;
+}
+.length-10{
+  width: 83.33333333%
+}
+.length-11{
+  width: 91.66666667%;
+}
+.length-12{
+  width: 100%;
+}
+/*控件*/
+.btn{
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+}
+/*样式偏小的按钮*/
+.btn-thin{
+  padding: 4px 12px;
+}
+.txtare{
+  resize: none;
+}

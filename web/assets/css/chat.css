@@ -1,0 +1,192 @@
+/**
+*这部分代码是可复用的，要放入style.css
+*导航栏下面的全部元素
+*/
+.content-body{
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    margin-top: 55px;
+}
+/*聊天室页面高度5800px*/
+#chatroom{
+    height: 500px;
+}
+/*聊天室主题要铺满整个页面*/
+.chatroom-body{
+    height: auto;
+}
+/*聊天室整个面板高度都是铺满的*/
+.content-board{
+    height: auto;
+    max-height: 554px;
+    border: 2px #0099CB solid;
+    border-radius: 10px;
+}
+/*聊天框的介绍外层div*/
+.board-descripter{
+    background: #FCCC20;
+    border-radius: 5px;
+}
+#chat-board-descripter{
+    width: 851px;
+    margin-left: -15px;
+    height: 50px;
+}
+/*聊天框的介绍文字*/
+.description{
+    position: absolute;
+    font-size: x-large;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+/*聊天框title*/
+#chat-descript-txt{
+    margin-top: 5px;
+    margin-left: 360px;
+}
+/*聊天内容模板*/
+.content-msg{
+    width: 100%;
+    height: auto;
+}
+.list-board{
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    min-height: 500px;
+    OVERFLOW-Y: scroll;
+}
+#users-msgs{
+    margin-left: 20px;
+}
+/*消息列表的布局*/
+.message-list{
+    position: relative;
+    max-height: 500px;
+}
+.img-block{
+    position: absolute;
+    width: 41px;
+    height: 41px;
+}
+.my-img-block{
+    margin-top: 0px;
+    margin-left: 730px;
+}
+/*消息中的头像*/
+.message-block{
+    border-radius:5px; /* 圆角 */
+    border: 1px #87D7FF solid;
+    background: #87D7FF;
+}
+.other-message-block{
+    padding: 10px;
+    width: auto;
+    max-width: 300px;
+    min-height: 30px;
+    min-width: 20px;
+    position: relative;
+    margin-top: 30px;
+    margin-left: 60px;
+}
+.my-message-block{
+    padding: 10px;
+    max-width: 300px;
+    min-height: 30px;
+    min-width: 20px;
+    position: relative;
+    margin-top: 30px;
+    margin-left: 410px;
+}
+/*每条聊天记录的布局*/
+.message{
+    position: relative;
+    height: auto;
+}
+/*消息内容体*/
+.msg-body{
+    position: relative;
+    height: auto;
+}
+.arrow{
+    opacity: 1;
+    top:5px;
+    font-size:0;
+    border:solid 8px;
+}
+.other-chat-arrow{
+    margin-left: -27px;
+    float: left;
+    border-color:#ffffff #87D7FF #ffffff #ffffff;
+}
+.my-chat-arrow{
+    margin-right: -27px;
+    float: right;
+    border-color:#ffffff #ffffff #ffffff #87D7FF;
+}
+/*消息实体*/
+.msg-entity{
+    padding-left: 5px;
+}
+/****************************/
+/*以下部分是 右侧的在线逗比列表*/
+
+.online{
+    background: #ffffff;
+    border-radius: 10px;
+    border: 2px #0099CB solid;
+    min-height: 554px;
+}
+#online-board-descripter{
+    width: 281px;
+    margin-left: -15px;
+    height: 50px;
+}
+#chat-online-txt{
+    margin-top: 5px;
+    margin-left: 85px;
+}
+.online-user-board{
+    position: absolute;
+    width: 99%;
+    margin-left: -13px;
+    overflow-y: scroll;
+    height: auto;
+    min-height: 500px;
+}
+#send-input{
+    border: 4px solid #000;
+    bottom: 0;
+    height: 50px;
+    left: 0;
+    outline: none;
+    padding-left: 10px;
+    position: fixed;
+    right: 0;
+    width: 100%;
+    border-radius: 5px;
+}
+.online-list{
+    list-style: outside none none;
+    line-height: 42px;
+    border-bottom: 1px solid #F0F0F0;
+}
+.online-dobe{
+    position: relative;
+    height: 45px;
+    width: 100%;
+    line-height: 43px;
+    border-bottom: 1px solid #F0F0F0;
+    padding: 0px 10px !important;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+}
+.online-dobe:hover{
+    background: #cccccc;
+}
+.username-lab{
+    position: relative;
+    margin-left: 10px;
+}

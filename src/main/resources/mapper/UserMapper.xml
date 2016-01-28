@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.dobehub.user.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.github.dobehub.user.pojo.User" >
+    <id column="client_id" property="clientId" jdbcType="CHAR" />
+    <result column="username" property="username" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="email" property="email" jdbcType="CHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="introduce" property="introduce" jdbcType="CHAR" />
+    <result column="coin" property="coin" jdbcType="INTEGER" />
+    <result column="active" property="active" jdbcType="INTEGER" />
+    <result column="agree" property="agree" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    client_id, username, password, email, sex, introduce, coin, active, agree, created_at
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where client_id = #{clientId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from users
+    where client_id = #{clientId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.github.dobehub.user.pojo.User" >
+    insert into users (client_id, username, password, 
+      email, sex, introduce, coin, 
+      active, agree, created_at
+      )
+    values (#{clientId,jdbcType=CHAR}, #{username,jdbcType=CHAR}, #{password,jdbcType=CHAR}, 
+      #{email,jdbcType=CHAR}, #{sex,jdbcType=CHAR}, #{introduce,jdbcType=CHAR}, #{coin,jdbcType=INTEGER}, 
+      #{active,jdbcType=INTEGER}, #{agree,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.github.dobehub.user.pojo.User" >
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clientId != null" >
+        client_id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+      <if test="coin != null" >
+        coin,
+      </if>
+      <if test="active != null" >
+        active,
+      </if>
+      <if test="agree != null" >
+        agree,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clientId != null" >
+        #{clientId,jdbcType=CHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=CHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=CHAR},
+      </if>
+      <if test="coin != null" >
+        #{coin,jdbcType=INTEGER},
+      </if>
+      <if test="active != null" >
+        #{active,jdbcType=INTEGER},
+      </if>
+      <if test="agree != null" >
+        #{agree,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.github.dobehub.user.pojo.User" >
+    update users
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=CHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=CHAR},
+      </if>
+      <if test="coin != null" >
+        coin = #{coin,jdbcType=INTEGER},
+      </if>
+      <if test="active != null" >
+        active = #{active,jdbcType=INTEGER},
+      </if>
+      <if test="agree != null" >
+        agree = #{agree,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where client_id = #{clientId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.github.dobehub.user.pojo.User" >
+    update users
+    set username = #{username,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      email = #{email,jdbcType=CHAR},
+      sex = #{sex,jdbcType=CHAR},
+      introduce = #{introduce,jdbcType=CHAR},
+      coin = #{coin,jdbcType=INTEGER},
+      active = #{active,jdbcType=INTEGER},
+      agree = #{agree,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP}
+    where client_id = #{clientId,jdbcType=CHAR}
+  </update>
+</mapper>

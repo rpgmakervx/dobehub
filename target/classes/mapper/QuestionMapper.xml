@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.dobehub.question.dao.QuestionMapper" >
+  <resultMap id="BaseResultMap" type="com.github.dobehub.question.pojo.Question" >
+    <id column="quest_id" property="questId" jdbcType="CHAR" />
+    <result column="client_id" property="clientId" jdbcType="CHAR" />
+    <result column="coin" property="coin" jdbcType="INTEGER" />
+    <result column="answered" property="answered" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.github.dobehub.question.pojo.Question" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    quest_id, client_id, coin, answered, created_at
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from questions
+    where quest_id = #{questId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from questions
+    where quest_id = #{questId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.github.dobehub.question.pojo.Question" >
+    insert into questions (quest_id, client_id, coin, 
+      answered, created_at, content
+      )
+    values (#{questId,jdbcType=CHAR}, #{clientId,jdbcType=CHAR}, #{coin,jdbcType=INTEGER}, 
+      #{answered,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.github.dobehub.question.pojo.Question" >
+    insert into questions
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="questId != null" >
+        quest_id,
+      </if>
+      <if test="clientId != null" >
+        client_id,
+      </if>
+      <if test="coin != null" >
+        coin,
+      </if>
+      <if test="answered != null" >
+        answered,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="questId != null" >
+        #{questId,jdbcType=CHAR},
+      </if>
+      <if test="clientId != null" >
+        #{clientId,jdbcType=CHAR},
+      </if>
+      <if test="coin != null" >
+        #{coin,jdbcType=INTEGER},
+      </if>
+      <if test="answered != null" >
+        #{answered,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.github.dobehub.question.pojo.Question" >
+    update questions
+    <set >
+      <if test="clientId != null" >
+        client_id = #{clientId,jdbcType=CHAR},
+      </if>
+      <if test="coin != null" >
+        coin = #{coin,jdbcType=INTEGER},
+      </if>
+      <if test="answered != null" >
+        answered = #{answered,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where quest_id = #{questId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.github.dobehub.question.pojo.Question" >
+    update questions
+    set client_id = #{clientId,jdbcType=CHAR},
+      coin = #{coin,jdbcType=INTEGER},
+      answered = #{answered,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where quest_id = #{questId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.github.dobehub.question.pojo.Question" >
+    update questions
+    set client_id = #{clientId,jdbcType=CHAR},
+      coin = #{coin,jdbcType=INTEGER},
+      answered = #{answered,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP}
+    where quest_id = #{questId,jdbcType=CHAR}
+  </update>
+</mapper>
