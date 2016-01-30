@@ -1,9 +1,10 @@
 package com.github.dobehub.activity.dao;
 
 import com.github.dobehub.activity.pojo.Activity;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public interface ActivityMapper {
     int deleteByPrimaryKey(String activityId);
 

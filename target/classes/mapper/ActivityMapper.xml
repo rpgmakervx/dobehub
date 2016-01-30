@@ -7,6 +7,7 @@
     <result column="agreed" property="agreed" jdbcType="INTEGER" />
     <result column="cmted" property="cmted" jdbcType="INTEGER" />
     <result column="shared" property="shared" jdbcType="INTEGER" />
+    <result column="image" property="image" jdbcType="INTEGER" />
     <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
     <association column="activity_id" select="selectUser" javaType="com.github.dobehub.user.pojo.User" property="user">
       <id column="client_id" jdbcType="CHAR" property="clientId" />
@@ -24,7 +25,7 @@
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    activity_id, client_id, type, agreed, cmted, shared, created_at
+    activity_id, client_id, type, agreed, cmted, shared, image,created_at
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -53,10 +54,10 @@
   </delete>
   <insert id="insert" parameterType="com.github.dobehub.activity.pojo.Activity" >
     insert into activitys (activity_id, client_id, type, 
-      agreed, cmted, shared, 
+      agreed, cmted, shared, image,
       content,created_at)
     values (#{activityId,jdbcType=CHAR}, #{user.clientId,jdbcType=CHAR}, #{type,jdbcType=CHAR}, 
-      #{agreed,jdbcType=INTEGER}, #{cmted,jdbcType=INTEGER}, #{shared,jdbcType=INTEGER}, 
+      #{agreed,jdbcType=INTEGER}, #{cmted,jdbcType=INTEGER}, #{shared,jdbcType=INTEGER}, #{image,jdbcType=INTEGER},
       #{content,jdbcType=LONGVARCHAR},#{createdAt,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.github.dobehub.activity.pojo.Activity" >
@@ -79,6 +80,9 @@
       </if>
       <if test="shared != null" >
         shared,
+      </if>
+      <if test="image != null" >
+        image,
       </if>
       <if test="content != null" >
         content,
@@ -106,6 +110,9 @@
       <if test="shared != null" >
         #{shared,jdbcType=INTEGER},
       </if>
+      <if test="image != null" >
+        #{image,jdbcType=INTEGER},
+      </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -132,6 +139,9 @@
       <if test="shared != null" >
         shared = #{shared,jdbcType=INTEGER},
       </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=INTEGER},
+      </if>
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -148,6 +158,7 @@
       agreed = #{agreed,jdbcType=INTEGER},
       cmted = #{cmted,jdbcType=INTEGER},
       shared = #{shared,jdbcType=INTEGER},
+      image = #{image,jdbcType=INTEGER},
       content = #{content,jdbcType=LONGVARCHAR},
       created_at = #{createdAt,jdbcType=TIMESTAMP}
     where activity_id = #{activityId,jdbcType=CHAR}
@@ -159,6 +170,7 @@
       agreed = #{agreed,jdbcType=INTEGER},
       cmted = #{cmted,jdbcType=INTEGER},
       shared = #{shared,jdbcType=INTEGER},
+      image = #{image,jdbcType=INTEGER},
       created_at = #{createdAt,jdbcType=TIMESTAMP}
     where activity_id = #{activityId,jdbcType=CHAR}
   </update>

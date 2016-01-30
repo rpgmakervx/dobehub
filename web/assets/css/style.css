@@ -61,8 +61,6 @@ list-style: none;
 }
 /*模板全局设置 背景色·和悬浮效果*/
 .nav_body{
-  z-index: 100000000;
-  position:fixed;
   width:100%;
   background:#0099CB;
   border-radius:0px;

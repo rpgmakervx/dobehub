@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.dobehub.reply.dao.ReplyMapper" >
+  <resultMap id="BaseResultMap" type="com.github.dobehub.reply.pojo.Reply" >
+    <id column="reply_id" property="replyId" jdbcType="CHAR" />
+    <result column="comment_id" property="commentId" jdbcType="CHAR" />
+    <result column="client_id" property="clientId" jdbcType="CHAR" />
+    <result column="to_client_id" property="toClientId" jdbcType="CHAR" />
+    <result column="reply_at" property="replyAt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.github.dobehub.reply.pojo.Reply" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    reply_id, comment_id, client_id, to_client_id, reply_at
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from replies
+    where reply_id = #{replyId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from replies
+    where reply_id = #{replyId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.github.dobehub.reply.pojo.Reply" >
+    insert into replies (reply_id, comment_id, client_id, 
+      to_client_id, reply_at, content
+      )
+    values (#{replyId,jdbcType=CHAR}, #{commentId,jdbcType=CHAR}, #{clientId,jdbcType=CHAR}, 
+      #{toClientId,jdbcType=CHAR}, #{replyAt,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.github.dobehub.reply.pojo.Reply" >
+    insert into replies
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="replyId != null" >
+        reply_id,
+      </if>
+      <if test="commentId != null" >
+        comment_id,
+      </if>
+      <if test="clientId != null" >
+        client_id,
+      </if>
+      <if test="toClientId != null" >
+        to_client_id,
+      </if>
+      <if test="replyAt != null" >
+        reply_at,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="replyId != null" >
+        #{replyId,jdbcType=CHAR},
+      </if>
+      <if test="commentId != null" >
+        #{commentId,jdbcType=CHAR},
+      </if>
+      <if test="clientId != null" >
+        #{clientId,jdbcType=CHAR},
+      </if>
+      <if test="toClientId != null" >
+        #{toClientId,jdbcType=CHAR},
+      </if>
+      <if test="replyAt != null" >
+        #{replyAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.github.dobehub.reply.pojo.Reply" >
+    update replies
+    <set >
+      <if test="commentId != null" >
+        comment_id = #{commentId,jdbcType=CHAR},
+      </if>
+      <if test="clientId != null" >
+        client_id = #{clientId,jdbcType=CHAR},
+      </if>
+      <if test="toClientId != null" >
+        to_client_id = #{toClientId,jdbcType=CHAR},
+      </if>
+      <if test="replyAt != null" >
+        reply_at = #{replyAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where reply_id = #{replyId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.github.dobehub.reply.pojo.Reply" >
+    update replies
+    set comment_id = #{commentId,jdbcType=CHAR},
+      client_id = #{clientId,jdbcType=CHAR},
+      to_client_id = #{toClientId,jdbcType=CHAR},
+      reply_at = #{replyAt,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where reply_id = #{replyId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.github.dobehub.reply.pojo.Reply" >
+    update replies
+    set comment_id = #{commentId,jdbcType=CHAR},
+      client_id = #{clientId,jdbcType=CHAR},
+      to_client_id = #{toClientId,jdbcType=CHAR},
+      reply_at = #{replyAt,jdbcType=TIMESTAMP}
+    where reply_id = #{replyId,jdbcType=CHAR}
+  </update>
+</mapper>

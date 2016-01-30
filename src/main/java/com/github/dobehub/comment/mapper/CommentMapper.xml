@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.dobehub.comment.dao.CommentMapper" >
+  <resultMap id="BaseResultMap" type="com.github.dobehub.comment.pojo.Comment" >
+    <id column="comment_id" property="commentId" jdbcType="CHAR" />
+    <result column="activity_id" property="activityId" jdbcType="CHAR" />
+    <result column="client_id" property="clientId" jdbcType="CHAR" />
+    <result column="comment_at" property="commentAt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.github.dobehub.comment.pojo.Comment" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    comment_id, activity_id, client_id, comment_at
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from comments
+    where comment_id = #{commentId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from comments
+    where comment_id = #{commentId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.github.dobehub.comment.pojo.Comment" >
+    insert into comments (comment_id, activity_id, client_id, 
+      comment_at, content)
+    values (#{commentId,jdbcType=CHAR}, #{activityId,jdbcType=CHAR}, #{clientId,jdbcType=CHAR}, 
+      #{commentAt,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.github.dobehub.comment.pojo.Comment" >
+    insert into comments
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commentId != null" >
+        comment_id,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="clientId != null" >
+        client_id,
+      </if>
+      <if test="commentAt != null" >
+        comment_at,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commentId != null" >
+        #{commentId,jdbcType=CHAR},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=CHAR},
+      </if>
+      <if test="clientId != null" >
+        #{clientId,jdbcType=CHAR},
+      </if>
+      <if test="commentAt != null" >
+        #{commentAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.github.dobehub.comment.pojo.Comment" >
+    update comments
+    <set >
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=CHAR},
+      </if>
+      <if test="clientId != null" >
+        client_id = #{clientId,jdbcType=CHAR},
+      </if>
+      <if test="commentAt != null" >
+        comment_at = #{commentAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where comment_id = #{commentId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.github.dobehub.comment.pojo.Comment" >
+    update comments
+    set activity_id = #{activityId,jdbcType=CHAR},
+      client_id = #{clientId,jdbcType=CHAR},
+      comment_at = #{commentAt,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where comment_id = #{commentId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.github.dobehub.comment.pojo.Comment" >
+    update comments
+    set activity_id = #{activityId,jdbcType=CHAR},
+      client_id = #{clientId,jdbcType=CHAR},
+      comment_at = #{commentAt,jdbcType=TIMESTAMP}
+    where comment_id = #{commentId,jdbcType=CHAR}
+  </update>
+</mapper>

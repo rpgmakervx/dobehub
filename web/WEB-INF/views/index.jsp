@@ -16,6 +16,7 @@
   <link rel='stylesheet' href='assets/css/style.css' />
   <link rel='stylesheet' href='assets/css/index.css' />
   <script type="text/javascript" src="assets/js/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="assets/js/jquery.form.js"></script>
   <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="assets/js/posfixed.js"></script>
   <script type="text/javascript" src="assets/js/global.js"></script>
@@ -75,7 +76,7 @@
             </div>
             <div id="dropdown-mod">
               <div class="mod-body">
-                <p id="">搜点儿大众化的，否则没结果啊</p>
+               <p id="">搜点儿大众化的，否则没结果啊</p>
                 <p id="syn-content"></p>
                 <ul class="dropdown-list">
                   <li class="result"><a>求一名Java开发者</a></li>
@@ -115,9 +116,8 @@
     <div class="row left-board space-9">
       <div class="contents">
         <div id="trend-message-input" class="blackboard">
-          <form id="trend-form" action="activity/5623365215/add" method="post" enctype="multipart/form-data">
             <div id="notice-space">
-              <span class="notice-txt">今天你遇到什么逗比的事儿了吗~~</span>
+                <span class="notice-txt">今天你遇到什么逗比的事儿了吗~~</span>
             </div>
             <!--表单信息-->
             <textarea id="trend-message-body" name="content" class="message-board"></textarea>
@@ -125,33 +125,47 @@
             <span class="img-icon">
                 <i class="glyphicon glyphicon-camera icon" id="camera-chooser"></i>
             </span>
-              <div class="image-board" id="image-board">
-                <div class="arrow" id="image-arrow"></div>
-                <div class="alert-bar" id="img-alert-bar">
-                  <span class="upload-nav">上传照片</span>
-                  <span class="glyphicon glyphicon-remove icon close-icon" id="img-close-icon"></span>
+                <div class="image-board" id="image-board">
+                    <div class="arrow" id="image-arrow"></div>
+                    <div class="alert-bar" id="img-alert-bar">
+                        <span class="upload-nav">上传照片</span>
+                        <span class="glyphicon glyphicon-remove icon close-icon remove" id="img-close-icon"></span>
+                    </div>
+                    <div class="file-upload-board">
+                        <!--表单信息-->
+                        <input type="file" id="picture" name="picture"/>
+                    </div>
+                    <div id="warning-space">
+                        <span class="notice-txt" id="file-size-warning">请选择图片文件，2M是最大的限制了~~</span>
+                    </div>
+                    <!-- 显示上传图片内容 的 面板 -->
+                    <div class="show-picture" id="show-picture">
+                        <img src="" id='upload-image' class='upload-image'/>
+                        <span id='img-remove-icon' class='glyphicon glyphicon-remove icon remove-icon'></span>
+                    </div>
                 </div>
-                <div class="file-upload-board">
-                  <!--表单信息-->
-                  <input type="file" id="picture" name="picture"/>
-                </div>
-                <div id="warning-space">
-                  <span class="notice-txt" id="file-size-warning">请选择图片文件，不要超过150k哦~~</span>
-                </div>
-                <!-- 显示上传图片内容 的 面板 -->
-                <div class="show-picture" id="show-picture">
-                  <img src="" id='upload-image' class='upload-image'/>
-                  <span id='img-remove-icon' class='glyphicon glyphicon-remove icon remove-icon'></span>
-                </div>
-              </div>
-              <button class="btn sign-in-btn btn-yellow" type="button" id="publish-btn">
-                <i class="glyphicon glyphicon-file btn-icon"></i>
-                <span id="publish-txt" class="btn-txt">发表</span>
-              </button>
+                <button class="btn sign-in-btn btn-yellow" type="button" onclick="submitAction()" id="publish-btn">
+                    <i class="glyphicon glyphicon-file btn-icon"></i>
+                    <span id="publish-txt" class="btn-txt">发表</span>
+                </button>
             </div>
-          </form>
         </div>
-
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+           aria-labelledby="ModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close"
+                              data-dismiss="modal" aria-hidden="true">
+                          &times;
+                      </button>
+                      <div align="center" class="modal-title" id="ModalLabel">
+                          <h3 >^_^ 您已成功发表一条动态</h3>
+                      </div>
+                  </div>
+              </div><!-- /.modal-content -->
+          </div>
+        </div> <!-- /.modal -->
       </div>
       <div class="contents">
         <ul class="choose-bar" id="choose-bar">
@@ -175,7 +189,7 @@
       <div class="notice-board" id="announce-board">
         <div class="broadcast-board" id="broadcast-board">
           <div class="board-content">
-            <span class="glyphicon glyphicon-remove icon" id="announce-remove"></span>
+            <span class="glyphicon glyphicon-remove icon remove" id="announce-remove"></span>
             <P class="content-p"><strong class="btn-txt-yellow">这个真的是公告栏！</strong></P>
             <P class="content-p">1.请大家文明发言，逗比可以，不能人身攻击和发布不良信息哦！详见  <a href="#"><b>违规处理</b></a></P>
             <P class="content-p">2.招募义务管理员，求合伙儿~~</P>

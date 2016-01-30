@@ -19,6 +19,8 @@ public class Activity {
 
     private String content;
 
+    private Integer image;
+
     private Date createdAt;
     public String getActivityId() {
         return activityId;
@@ -71,6 +73,10 @@ public class Activity {
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
+
+    public Integer getImage() {return image;}
+
+    public void setImage(Integer image) {this.image = image;}
 
     public Date getCreatedAt() {return createdAt;}
 

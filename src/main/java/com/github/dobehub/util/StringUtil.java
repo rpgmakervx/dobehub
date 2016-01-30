@@ -20,6 +20,7 @@ import java.util.UUID;
  */
 @Component("stringUtil")
 public class StringUtil {
+
     /**
      * 生成uuid
      * @return
@@ -80,20 +81,27 @@ public class StringUtil {
     }
 
     /**
-     * 生成指定位数的随机字符串（纯数字）
-     * @param level
+     * 生成指定位数的随机字符串
+     * @param level 生成长度
+*    * @param mod   生成模式（按照指定模式生成,模式有：数字类型，大写字母，小写字母，数字字母混合）
      * @return
      */
-    public String randomCode(int level){
-        String numberic = "1234567890";
-        String password = "";
-        Random rand = new Random();
-        for(int i=0;i<level;i++){
-            password = password + numberic.charAt(rand.nextInt(10));
+    public String randomCode(int level,RandMod mod){
+        String randcode = "";
+        switch (mod){
+            case NUMERIC:randcode = Constant.NUMERIC;break;
+            case UPPERCHAR:randcode = Constant.UPPERCHAR;break;
+            case LOWERCHAR:randcode = Constant.LOWERCHAR;break;
+            case MIXED:randcode = Constant.MIXED;break;
         }
-        return password;
+        int len = randcode.length();
+        StringBuffer password = new StringBuffer();
+        Random rand = new Random();
+        for(int i=0;i<level&&len>0;i++){
+            password.append(randcode.charAt(rand.nextInt(len)));
+        }
+        return password.toString();
     }
-
     /**
      * 生成验证码
      * @return

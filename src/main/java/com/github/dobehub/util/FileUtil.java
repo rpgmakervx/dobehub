@@ -1,5 +1,6 @@
 package com.github.dobehub.util;
 
+import com.github.dobehub.activity.pojo.Activity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -16,12 +17,10 @@ public class FileUtil {
 	 * @param activity_id(动态的id)
 	 * 图片如果存在就覆盖掉，所有图片都叫sign.jpg
 	 */
-	public boolean imageUpload(HttpServletRequest request,String activity_id, CommonsMultipartFile picture){
-		System.out.println("picture: "+picture.getSize());
+	public boolean activityImageUpload(HttpServletRequest request,Activity activity, CommonsMultipartFile picture){
 		if(picture!=null&&picture.getSize()>0){
-			String fn = picture.getOriginalFilename();
-			String pictureRealPathDir = request.getSession().getServletContext().getRealPath("assets/images/activity");
-			String fileName =pictureRealPathDir+File.separator+activity_id+fn.substring(fn.lastIndexOf("."));
+			String pictureRealPathDir = request.getSession().getServletContext().getRealPath("assets/images/activity/"+activity.getUser().getClientId());
+			String fileName =pictureRealPathDir+File.separator+activity.getActivityId()+".jpg";
 			try {
 				File f = new File(fileName);
 				File folder = new File(pictureRealPathDir);

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.dobehub.comment.dao.CommentMapper">
+    <resultMap id="BaseResultMap" type="com.github.dobehub.comment.pojo.Comment">
+        <id column="comment_id" property="commentId" jdbcType="CHAR"/>
+        <association column="comment_id" select="selectUser" javaType="com.github.dobehub.user.pojo.User"
+                     property="user">
+            <id column="client_id" jdbcType="CHAR" property="clientId"/>
+            <result column="username" jdbcType="CHAR" property="username"/>
+            <result column="email" jdbcType="CHAR" property="email"/>
+            <result column="sex" jdbcType="CHAR" property="sex"/>
+            <result column="introduce" property="introduce" jdbcType="CHAR"/>
+            <result column="coin" jdbcType="INTEGER" property="coin"/>
+            <result column="active" jdbcType="INTEGER" property="active"/>
+            <result column="agree" jdbcType="INTEGER" property="agree"/>
+            <result column="created_at" jdbcType="TIMESTAMP" property="createdAt"/>
+        </association>
+        <association column="comment_id" select="selectActivity" javaType="com.github.dobehub.activity.pojo.Activity"
+                     property="activity">
+            <id column="activity_id" property="activityId" jdbcType="CHAR"/>
+            <result column="type" property="type" jdbcType="CHAR"/>
+            <result column="agreed" property="agreed" jdbcType="INTEGER"/>
+            <result column="cmted" property="cmted" jdbcType="INTEGER"/>
+            <result column="shared" property="shared" jdbcType="INTEGER"/>
+            <result column="image" property="image" jdbcType="INTEGER" />
+            <result column="created_at" property="createdAt" jdbcType="TIMESTAMP"/>
+        </association>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.github.dobehub.comment.pojo.Comment" extends="BaseResultMap">
+        <result column="content" property="content" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    comment_id, activity_id, client_id, comment_at
+  </sql>
+    <sql id="Blob_Column_List">
+    content
+  </sql>
+    <select id="selectUser" parameterType="java.lang.String" resultType="com.github.dobehub.user.pojo.User">
+    select u.client_id as clientId, username, email, sex, introduce, coin, active, agree, u.created_at
+    from users as u join comments as c on c.client_id = u.client_id
+    where c.comment_id = #{comment_id,jdbcType=CHAR}
+  </select>
+    <select id="selectActivity" parameterType="java.lang.String" resultType="com.github.dobehub.activity.pojo.Activity">
+    select activity_id, type, agreed, cmted, shared, created_at
+    from activitys as a join comments as c on a.activity_id = c.activity_id
+    where c.comment_id = #{comment_id,jdbcType=CHAR}
+  </select>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from comments
+        where comment_id = #{commentId,jdbcType=CHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from comments
+    where comment_id = #{commentId,jdbcType=CHAR}
+  </delete>
+    <insert id="insert" parameterType="com.github.dobehub.comment.pojo.Comment">
+    insert into comments (comment_id, activity_id, client_id, 
+      comment_at, content)
+    values (#{commentId,jdbcType=CHAR}, #{activityId,jdbcType=CHAR}, #{user.clientId,jdbcType=CHAR},
+      #{commentAt,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.github.dobehub.comment.pojo.Comment">
+        insert into comments
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="commentId != null">
+                comment_id,
+            </if>
+            <if test="activityId != null">
+                activity_id,
+            </if>
+            <if test="clientId != null">
+                client_id,
+            </if>
+            <if test="commentAt != null">
+                comment_at,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="commentId != null">
+                #{commentId,jdbcType=CHAR},
+            </if>
+            <if test="activityId != null">
+                #{activity.activityId,jdbcType=CHAR},
+            </if>
+            <if test="clientId != null">
+                #{user.clientId,jdbcType=CHAR},
+            </if>
+            <if test="commentAt != null">
+                #{commentAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.github.dobehub.comment.pojo.Comment">
+        update comments
+        <set>
+            <if test="activityId != null">
+                activity_id = #{activity.activityId,jdbcType=CHAR},
+            </if>
+            <if test="clientId != null">
+                client_id = #{user.clientId,jdbcType=CHAR},
+            </if>
+            <if test="commentAt != null">
+                comment_at = #{commentAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where comment_id = #{commentId,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.github.dobehub.comment.pojo.Comment">
+    update comments
+    set activity_id = #{activity.activityId,jdbcType=CHAR},
+      client_id = #{user.clientId,jdbcType=CHAR},
+      comment_at = #{commentAt,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where comment_id = #{commentId,jdbcType=CHAR}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.github.dobehub.comment.pojo.Comment">
+    update comments
+    set activity_id = #{activity.activityId,jdbcType=CHAR},
+      client_id = #{user.clientId,jdbcType=CHAR},
+      comment_at = #{commentAt,jdbcType=TIMESTAMP}
+    where comment_id = #{commentId,jdbcType=CHAR}
+  </update>
+
+    <select id="selectByActivity" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from comments
+        where activity_id = #{activityId,jdbcType=CHAR}
+    </select>
+</mapper>
